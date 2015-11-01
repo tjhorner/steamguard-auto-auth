@@ -1,0 +1,42 @@
+{
+  "name": "SteamGuard Auto Auth",
+  "version": "0.0.3",
+  "manifest_version": 2,
+  "description": "Automatically checks your Gmail and inserts your SteamGuard code when logging in.",
+  "homepage_url": "http://horner.tj/",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAz9qQNoYXsGd9sfSdovB19plyN/J7DdmFHnHcBg1VbDCujkTVUfbL2WO1ZiONVYQjNPJCcnQHx1CvTCgWRl2s0QVABAEdJaBmlADWl9O/eByHkqWoRF/43aQk6W5WU0rmZ65VG7ppfK2ht4wbj01MoHaTpU1/ocTbZJ+eonx59VLnhuJpuA9W2CRlJi7C2zu++bzkwC3GszjHjfkQL0XcJhQGWYHNoCteCisloZKkNjTK5188qozbBhF5ZnfyJugL6F9IRRzpkTAO85Sqq4cz5y+v5rvTTH1Qg7bVt+tgXJHmdYJYVJax0RYikyCtEFgvnnYissCTrhdgU9IF7RWl1wIDAQAB",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "page": "src/bg/background.html",
+    "persistent": true
+  },
+  "permissions": [
+    "notifications",
+    "identity",
+    "identity.email"
+  ],
+  "oauth2": {
+    "client_id": "347789603321-arv1h8h6gd00veh3ajf2rs8iieaetndt.apps.googleusercontent.com",
+    "scopes": [
+      "https://mail.google.com/",
+      "https://www.googleapis.com/auth/gmail.modify",
+      "https://www.googleapis.com/auth/gmail.readonly"
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://steamcommunity.com/login/*",
+        "https://store.steampowered.com/login/*"
+      ],
+      "js": [
+        "src/inject/jquery.min.js",
+        "src/inject/inject.js"
+      ]
+    }
+  ]
+}
